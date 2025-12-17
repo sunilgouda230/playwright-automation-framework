@@ -20,17 +20,17 @@ test('Signup Page Test', async ({ page }) => {
     });
 
 
-test('Testing Base Test Fixture', async ({ page }) => {
+test('@sanity Testing Base Test Fixture', async ({ page }) => {
     console.log('Base URL in test file:', process.env.BASE_URL);
     console.log('Current Page URL in test file:', page.url());
 });
 
-test('Test JOSN Data', async ({ page }) => {
+test('@sanity Test JOSN Data', async ({ page }) => {
     const userData = JSON.parse(JSON.stringify(data));
     console.log('User Data from JSON:', userData);
 });
 
-test('Login Page Test', async ({ page }) => {
+test('@sanity Login Page Test', async ({ page }) => {
     const userData = JSON.parse(JSON.stringify(data));
     const loginPage = new LoginPage(page);
     const dashBoard = new DashBoard(page);
