@@ -34,6 +34,7 @@ test('@sanity Login Page Test', async ({ page }) => {
     const userData = JSON.parse(JSON.stringify(data));
     const loginPage = new LoginPage(page);
     const dashBoard = new DashBoard(page);
+    await loginPage.waitForHomePage();
     await loginPage.navigateToSignUpPage();
     expect(page.url()).toContain(routes.loginPage);
     await loginPage.enterLoginDetails(userData.email,userData.password);

@@ -3,19 +3,14 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 export function loadEnv() {
-  // Load base .env
-  dotenv.config();
+  const env = process.env.ENV || 'qa';
+  const envFile = `${env}.env`;
+  const envPath = path.resolve(envFile);
 
-  const envName = process.env.ENV || 'qa';
-  const envFile = `${envName}.env`;
-
-  const envPath = path.resolve(process.cwd(), envFile);
-
-  if (!fs.existsSync(envPath)) {
-    throw new Error(`❌ Environment file not found: ${envFile}`);
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+    console.log(`✅ Loaded env file: ${envFile}`);
+  } else {
+    console.log(`⚠️ Env file not found (${envFile}), using process.env`);
   }
-
-  dotenv.config({ path: envPath });
-
-  console.log(`✅ Loaded environment: ${envFile}`);
 }

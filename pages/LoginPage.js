@@ -8,6 +8,7 @@ export default class LoginPage extends BasePage{
         this.enterEmailInput = page.locator("//input[@data-qa='login-email']");
         this.passwordInput = page.locator("//input[@data-qa='login-password']");
         this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.loginLink = page.locator('a[href="/login"]');
 
     }
 
@@ -19,6 +20,10 @@ export default class LoginPage extends BasePage{
         await this.enterEmailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async waitForHomePage() {
+         await this.loginLink.waitFor();
     }
 
 }
