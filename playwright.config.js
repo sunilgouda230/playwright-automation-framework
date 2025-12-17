@@ -11,6 +11,7 @@ import {loadEnv} from './utils/envLoader.js';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 loadEnv();
+const isCI = !!process.env.CI;
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -33,9 +34,12 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: false,
+    headless: isCI,
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL
+    baseURL: process.env.BASE_URL,
+
+    retries: isCI ? 2 : 0,          // ✅ More stable in CI
+    workers: isCI ? 1 : undefined,
   },
 
   /* Configure projects for major browsers */
