@@ -1,0 +1,13 @@
+This is the flow of test execution in Playwright:
+
+1. Load playwright.config.js
+2. Create browser
+3. Create context
+4. Create page
+5. Run baseTest page fixture
+   → page.goto('/')
+6. Run test body
+7. Close page
+8. Close context
+9. Close browser
+
