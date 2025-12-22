@@ -38,5 +38,6 @@ test('@sanity Login Page Test', async ({ page }) => {
     await loginPage.navigateToSignUpPage();
     expect(page.url()).toContain(routes.loginPage);
     await loginPage.enterLoginDetails(userData.email,userData.password);
-    expect(await dashBoard.getLoggedInUserName()).toEqual(userData.firstName+' '+userData.lastName);    
+    expect(await dashBoard.getLoggedInUserName()).toEqual(userData.firstName+' '+userData.lastName);
+    console.log('Login Test Completed Successfully');    
 });
